@@ -33,6 +33,9 @@ public class ItemBusinessService {
 	}
 	
 	public Item saveItem(Item item) {
+		if(item.getName()== null) {
+			throw new ParameterMissingException("Name should not be null");
+		}
 		return repository.save(item);
 	}
 

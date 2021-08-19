@@ -1,6 +1,7 @@
 
 package com.in28minutes.unittesting.unittesting.business;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,10 @@ public class AppointmentBusinessService {
 	public void deleteAppointment(Appointments a) throws Exception {
 		repository.delete(a);
 //		throw new Exception(); // To fail the Test
+	}
+
+	public List<Appointments> retrieveAllAppointments() {
+		return repository.findAll();
 	}
 
 }

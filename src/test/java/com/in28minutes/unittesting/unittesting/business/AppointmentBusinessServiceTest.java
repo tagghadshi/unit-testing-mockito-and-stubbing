@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -59,5 +61,12 @@ class AppointmentBusinessServiceTest {
 		}
 	}
 	
+	@Test
+	void testRetrieveAllAppointments() {
+		List<Appointments> a = Arrays.asList(new Appointments(10, "Rohit Sharma", (byte)19, "rohitsharma45@gmail.com", 9999999999l));
+		when(repository.findAll()).thenReturn(a);
+		List<Appointments> saved = business.retrieveAllAppointments();
+		assertEquals(saved, a);
+	}
 	
 }

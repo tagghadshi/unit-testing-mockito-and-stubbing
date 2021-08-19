@@ -28,9 +28,10 @@ class ItemBusinessServiceTest {
 	@Test
 	void testRetreiveHardcodedItem() {
 		ItemBusinessService businessService = new ItemBusinessService();
-		Item item = businessService.retreiveHardcodedItem();
-		assertNotNull(item);
-		assertEquals(new Item(1, "Ball", 10, 100),item);
+		Item item = new Item(1, "Ball", 10, 100);
+		Item saved = businessService.retreiveHardcodedItem();
+		assertNotNull(saved);
+		assertEquals(item,saved);
 	}
 
 	@Test
@@ -44,10 +45,9 @@ class ItemBusinessServiceTest {
 	@Test
 	void testSaveWithNoNameThrowException() {
 		Item item = new Item(2, null, 20, 20);
-		if (item.getName() == null)
-			when(repository.save(item)).thenThrow(new ParameterMissingException("Name paratmer is Null"));
+//			when(repository.save(item)).thenThrow(new ParameterMissingException("Name paratmer is Null"));
 		try {
-			business.saveItem(item);
+			Item saved =business.saveItem(item);
 		} catch (Exception e) {
 			assertNotNull(e);
 			assertEquals(ParameterMissingException.class, e.getClass());
